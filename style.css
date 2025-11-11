@@ -64,44 +64,49 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* evita que a imagem ultrapasse o contêiner */
 }
 
 .carousel-slide.active {
     opacity: 1;
 }
 
-.image-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 2rem;
-}
-
-.image-placeholder span {
-    font-size: 3rem;
-    font-weight: 200;
-    margin-bottom: 10px;
-}
-
-.photo-caption {
-    font-size: 1rem;
-    opacity: 0.8;
-    font-weight: 300;
-}
-
-/* Para usar com suas próprias fotos, adicione esta classe às imagens:
+/* ==== Correção das imagens ==== */
 .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;       /* recorta e centraliza sem distorcer */
+    object-position: center; /* foca o centro da imagem */
+    display: block;
 }
-*/
 
+/* ==== Legendas das imagens ==== */
+.carousel-slide span,
+.carousel-slide .photo-caption {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 90%;
+    font-weight: 300;
+    z-index: 2;
+}
+
+.carousel-slide span {
+    bottom: 70px;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.carousel-slide .photo-caption {
+    bottom: 40px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* ==== Botões de navegação ==== */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -134,6 +139,7 @@ body {
     right: 20px;
 }
 
+/* ==== Indicadores ==== */
 .carousel-indicators {
     position: absolute;
     bottom: 20px;
@@ -159,6 +165,7 @@ body {
     border-radius: 5px;
 }
 
+/* ==== Mensagem final ==== */
 .message-section {
     max-width: 700px;
     margin: 0 auto;
@@ -187,6 +194,7 @@ body {
     font-style: italic;
 }
 
+/* ==== Animações ==== */
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -209,7 +217,7 @@ body {
     }
 }
 
-/* Responsividade */
+/* ==== Responsividade ==== */
 @media (max-width: 768px) {
     .title {
         font-size: 2rem;
@@ -258,8 +266,12 @@ body {
         height: 300px;
     }
 
-    .image-placeholder span {
-        font-size: 2rem;
+    .carousel-slide span {
+        font-size: 1.1rem;
+    }
+
+    .carousel-slide .photo-caption {
+        font-size: 0.9rem;
     }
 
     .message-card {
